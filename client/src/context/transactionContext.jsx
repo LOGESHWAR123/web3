@@ -93,7 +93,6 @@ export const TransactionProvider = ({children}) => {
         }
         } catch(error){
             console.log(error); 
-            throw new Error("No ethereum object");
         }
     };
      const sendTranscation = async() => {
@@ -116,9 +115,9 @@ export const TransactionProvider = ({children}) => {
             const transcationHash = await transcationContract.addToBlockchain(addressTo,parseAmount,message,keyword);
 
             setIsLoading(true);
-            console.log('Loading - ${transcationHash.hash}');
+            console.log(`Loading - ${transcationHash.hash}`);
             await transcationHash.wait();
-            console.log('Success - ${transcationHash.hash}');
+            console.log(`Success - ${transcationHash.hash}`);
             setIsLoading(false);
     
             const transactionsCount = await transcationContract.getTransactionCount();
